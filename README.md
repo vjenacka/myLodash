@@ -1,0 +1,1 @@
+Codecademy mini project recreating parts of the Lodash.js library.
