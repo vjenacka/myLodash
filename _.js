@@ -30,6 +30,39 @@ const _ = {
     let paddedString =
       " ".repeat(startPaddingLength) + str + " ".repeat(endPaddingLength);
     return paddedString;
+  },
+  has(obj,key){
+    return obj[key]===undefined? false : true
+  },
+  invert(obj){
+    let newObj={};
+    for(let prop in obj){
+      newObj[obj[prop]]=prop;
+    }
+    return newObj;
+  },
+  findKey(obj,func){
+    for(let prop in obj){
+      if(func(obj[prop]))return prop
+    }
+    return undefined
+  },
+  drop(arr,n){
+    if(arr.length<=n) return [];
+    if(n===undefined) return arr.splice(1);
+    return arr.splice(n,2);
+  },
+  dropWhile(arr,func){
+    let eleIndex=arr.findIndex((ele,index)=>!func(ele,index,arr))
+    return this.drop(arr,eleIndex);
+  },
+  chunk(arr,size=1){
+    let arrayChunks=[];
+    for(let i=0;i<arr.length;i+=size){
+      let arrChunk= arr.slice(i,i+size);
+      arrayChunks.push(arrChunk);
+    }
+    return arrayChunks;
   }
 };
 
